@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".presentation.add.AddFragment">
+
+    <View
+        android:id="@+id/view_1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/bg_light_gray"
+        app:layout_constraintBottom_toBottomOf="@id/edt_title"
+        app:layout_constraintEnd_toStartOf="@id/edt_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edt_title" />
+
+    <EditText
+        android:id="@+id/edt_title"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/txt_title"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:ems="10"
+        android:background=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/view_1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
