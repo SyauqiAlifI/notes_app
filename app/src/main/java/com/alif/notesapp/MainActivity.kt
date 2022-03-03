@@ -2,6 +2,7 @@ package com.alif.notesapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -19,6 +20,11 @@ class MainActivity : AppCompatActivity() {
             val appBarConfiguration = AppBarConfiguration(navHostFragment.navController.graph)
             setupActionBarWithNavController(navHostFragment.navController, appBarConfiguration)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_home, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onSupportNavigateUp(): Boolean {
