@@ -51,7 +51,7 @@ class DetailFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_edit -> findNavController().navigate(R.id.action_detailFragment_to_homeFragment)
+            R.id.menu_edit -> findNavController().navigate(R.id.action_detailFragment_to_updateFragment)
             R.id.menu_delete -> confirmDeleteNote()
         }
         return super.onOptionsItemSelected(item)

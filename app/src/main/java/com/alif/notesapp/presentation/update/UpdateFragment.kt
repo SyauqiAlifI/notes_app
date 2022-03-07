@@ -5,12 +5,16 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.alif.notesapp.MainActivity
 import com.alif.notesapp.R
 import com.alif.notesapp.databinding.FragmentUpdateBinding
+import com.alif.notesapp.utills.ExtensionFunctions.setActionBar
+import com.google.android.material.appbar.MaterialToolbar
 
 class UpdateFragment : Fragment() {
 
@@ -30,18 +34,7 @@ class UpdateFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
-        val navController = findNavController()
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-
-        binding.toolbarUpdate.apply {
-            setupWithNavController(navController, appBarConfiguration)
-            (requireActivity() as MainActivity).setSupportActionBar(this)
-            navController.addOnDestinationChangedListener {_, destination, _ ->
-                when (destination.id) {
-                    R.id.updateFragment -> this.setNavigationIcon(R.drawable.ic_left_arrow)
-                }
-            }
-        }
+        binding.toolbarUpdate.setActionBar(requireActivity())
 
         super.onViewCreated(view, savedInstanceState)
     }
@@ -62,3 +55,5 @@ class UpdateFragment : Fragment() {
         _binding = null
     }
 }
+
+
