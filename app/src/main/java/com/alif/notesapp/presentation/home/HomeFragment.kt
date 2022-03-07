@@ -36,6 +36,9 @@ class HomeFragment : Fragment() {
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_addFragment)
         }
+        binding.btnGoToDetail.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

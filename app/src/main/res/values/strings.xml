@@ -19,4 +19,7 @@
     <string name="content_fab_add_a_note">Fab add note</string>
     <string name="content_image_no_data">No Data</string>
     <string name="txt_save">Save</string>
+    <string name="txt_edit">Edit</string>
+    <string name="txt_delete">Delete</string>
+    <string name="go_to_detail_fragment">Go To Detail Fragment</string>
 </resources>
