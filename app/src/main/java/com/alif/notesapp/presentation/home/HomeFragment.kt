@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.alif.notesapp.MainActivity
 import com.alif.notesapp.R
 import com.alif.notesapp.databinding.FragmentHomeBinding
+import com.alif.notesapp.utills.ExtensionFunctions.setActionBar
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -26,13 +27,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
 
-        val navController =findNavController()
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-        binding.toolbarHome.setupWithNavController(navController, appBarConfiguration)
-        binding.toolbarHome.apply {
-            setupWithNavController(navController, appBarConfiguration)
-            (requireActivity() as MainActivity).setSupportActionBar(this)
-        }
+        binding.toolbarHome.setActionBar(requireActivity())
+
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_addFragment)
         }

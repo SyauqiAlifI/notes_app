@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.alif.notesapp.MainActivity
 import com.alif.notesapp.R
 import com.alif.notesapp.databinding.FragmentAddBinding
+import com.alif.notesapp.utills.ExtensionFunctions.setActionBar
 
 class AddFragment : Fragment() {
 
@@ -31,18 +32,7 @@ class AddFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
-        val navController = findNavController()
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-
-        binding.toolbarAdd.apply {
-            setupWithNavController(navController, appBarConfiguration)
-            (requireActivity() as MainActivity).setSupportActionBar(this)
-            navController.addOnDestinationChangedListener {_, destination, _ ->
-                when (destination.id) {
-                    R.id.addFragment -> this.setNavigationIcon(R.drawable.ic_left_arrow)
-                }
-            }
-        }
+        binding.toolbarAdd.setActionBar(requireActivity())
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
