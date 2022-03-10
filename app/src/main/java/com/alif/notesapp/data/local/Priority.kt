@@ -1,4 +1,7 @@
 package com.alif.notesapp.data.local
 
-class Priority {
+enum class Priority {
+    HIGH,
+    MEDIUM,
+    LOW
 }

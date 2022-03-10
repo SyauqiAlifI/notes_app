@@ -12,6 +12,7 @@ import com.alif.notesapp.MainActivity
 import com.alif.notesapp.R
 import com.alif.notesapp.databinding.FragmentAddBinding
 import com.alif.notesapp.utills.ExtensionFunctions.setActionBar
+import com.alif.notesapp.utills.ExtensionFunctions.setPriorityColor
 
 class AddFragment : Fragment() {
 
@@ -32,7 +33,10 @@ class AddFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
-        binding.toolbarAdd.setActionBar(requireActivity())
+        binding.apply {
+            toolbarAdd.setActionBar(requireActivity())
+            spinnerPriorities.onItemSelectedListener = setPriorityColor(context, cvPriority)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -14,6 +14,7 @@ import com.alif.notesapp.MainActivity
 import com.alif.notesapp.R
 import com.alif.notesapp.databinding.FragmentUpdateBinding
 import com.alif.notesapp.utills.ExtensionFunctions.setActionBar
+import com.alif.notesapp.utills.ExtensionFunctions.setPriorityColor
 import com.google.android.material.appbar.MaterialToolbar
 
 class UpdateFragment : Fragment() {
@@ -35,6 +36,9 @@ class UpdateFragment : Fragment() {
         setHasOptionsMenu(true)
 
         binding.toolbarUpdate.setActionBar(requireActivity())
+        binding.apply {
+            context?.let { spinnerPrioritiesUpdate.setPriorityColor(it, cvPriorityUpdate) }
+        }
 
         super.onViewCreated(view, savedInstanceState)
     }
