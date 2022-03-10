@@ -38,7 +38,7 @@ object ExtensionFunctions {
 
         val listener = object : AdapterView.OnItemSelectedListener {
 
-            val arrPriority = context.resources.getIntArray(R.array.priorities)
+//            val arrPriority = context.resources.getIntArray(R.array.priorities)
 
             val pink = ContextCompat.getColor(context, R.color.pink)
             val yellow = ContextCompat.getColor(context, R.color.yellow)

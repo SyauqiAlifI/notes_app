@@ -37,7 +37,7 @@ class UpdateFragment : Fragment() {
 
         binding.apply {
             binding.toolbarUpdate.setActionBar(requireActivity())
-            spinnerPrioritiesUpdate.onItemSelectedListener = context?.let { setPriorityColor(it, cvPriorityUpdate) }
+            spinnerPrioritiesUpdate.onItemSelectedListener = context?.let { setPriorityColor(it, priorityIndicator) }
         }
 
         super.onViewCreated(view, savedInstanceState)
