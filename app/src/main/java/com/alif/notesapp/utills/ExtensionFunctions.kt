@@ -47,9 +47,9 @@ object ExtensionFunctions {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
                 when (position) {
-                    arrPriority[0] -> cardView.setCardBackgroundColor(pink)
-                    arrPriority[1] -> cardView.setCardBackgroundColor(yellow)
-                    arrPriority[2] -> cardView.setCardBackgroundColor(green)
+                    0 -> cardView.setCardBackgroundColor(pink)
+                    1 -> cardView.setCardBackgroundColor(yellow)
+                    2 -> cardView.setCardBackgroundColor(green)
                 }
 
             }
