@@ -15,11 +15,15 @@ import com.alif.notesapp.R
 import com.google.android.material.appbar.MaterialToolbar
 
 object ExtensionFunctions {
+
     fun MaterialToolbar.setActionBar(requireActivity: FragmentActivity) {
+
         val navController = findNavController()
         val appBarConfiguration = AppBarConfiguration(navController.graph)
+
         setupWithNavController(navController, appBarConfiguration)
         (requireActivity as MainActivity).setSupportActionBar(this)
+
         navController.addOnDestinationChangedListener {_, destination, _ ->
             when (destination.id) {
                 R.id.updateFragment -> this.setNavigationIcon(R.drawable.ic_left_arrow)
@@ -27,9 +31,11 @@ object ExtensionFunctions {
                 R.id.detailFragment -> this.setNavigationIcon(R.drawable.ic_left_arrow)
             }
         }
+
     }
 
     fun setPriorityColor(context: Context, cardView: CardView) : AdapterView.OnItemSelectedListener {
+
         val listener = object : AdapterView.OnItemSelectedListener {
 
             val arrPriority = context.resources.getIntArray(R.array.priorities)
@@ -39,16 +45,22 @@ object ExtensionFunctions {
             val green = ContextCompat.getColor(context, R.color.green)
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
                 when (position) {
                     arrPriority[0] -> cardView.setCardBackgroundColor(pink)
                     arrPriority[1] -> cardView.setCardBackgroundColor(yellow)
                     arrPriority[2] -> cardView.setCardBackgroundColor(green)
                 }
+
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
             }
+
         }
+
         return listener
     }
+
 }

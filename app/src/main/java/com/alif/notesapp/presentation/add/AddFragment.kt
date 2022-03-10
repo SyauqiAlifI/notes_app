@@ -35,7 +35,7 @@ class AddFragment : Fragment() {
 
         binding.apply {
             toolbarAdd.setActionBar(requireActivity())
-            spinnerPriorities.onItemSelectedListener = setPriorityColor(context, cvPriority)
+            spinnerPriorities.onItemSelectedListener = context?.let { setPriorityColor(it, cvPriority) }
         }
     }
 
