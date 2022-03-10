@@ -29,29 +29,26 @@ object ExtensionFunctions {
         }
     }
 
-    fun setPriorityColor(context: Context, cardView: CardView) {
-        object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+    fun setPriorityColor(context: Context, cardView: CardView) : AdapterView.OnItemSelectedListener {
+        val listener = object : AdapterView.OnItemSelectedListener {
+
+            val arrPriority = context.resources.getIntArray(R.array.priorities)
+
+            val pink = ContextCompat.getColor(context, R.color.pink)
+            val yellow = ContextCompat.getColor(context, R.color.yellow)
+            val green = ContextCompat.getColor(context, R.color.green)
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when (position) {
+                    arrPriority[0] -> cardView.setCardBackgroundColor(pink)
+                    arrPriority[1] -> cardView.setCardBackgroundColor(yellow)
+                    arrPriority[2] -> cardView.setCardBackgroundColor(green)
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
             }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-
         }
-
-        val arrPriority = context.resources.getStringArray(R.array.priorities)
-
-        val pink = ContextCompat.getColor(context, R.color.pink)
-        val yellow = ContextCompat.getColor(context, R.color.yellow)
-        val green = ContextCompat.getColor(context, R.color.green)
-
-        when (this.selectedItem) {
-            arrPriority[0] -> cardView.setCardBackgroundColor(pink)
-            arrPriority[1] -> cardView.setCardBackgroundColor(yellow)
-            arrPriority[2] -> cardView.setCardBackgroundColor(green)
-        }
-        return ""
+        return listener
     }
 }
