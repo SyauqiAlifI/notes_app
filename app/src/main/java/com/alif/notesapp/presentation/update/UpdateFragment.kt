@@ -15,6 +15,7 @@ import com.alif.notesapp.R
 import com.alif.notesapp.databinding.FragmentUpdateBinding
 import com.alif.notesapp.utills.ExtensionFunctions.setActionBar
 import com.alif.notesapp.utills.ExtensionFunctions.setPriorityColor
+import com.alif.notesapp.utills.HelperFunctions.setPriorityColor
 import com.google.android.material.appbar.MaterialToolbar
 
 class UpdateFragment : Fragment() {
