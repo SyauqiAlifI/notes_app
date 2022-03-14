@@ -5,18 +5,11 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
-import com.alif.notesapp.MainActivity
 import com.alif.notesapp.R
 import com.alif.notesapp.databinding.FragmentUpdateBinding
 import com.alif.notesapp.utills.ExtensionFunctions.setActionBar
-import com.alif.notesapp.utills.ExtensionFunctions.setPriorityColor
 import com.alif.notesapp.utills.HelperFunctions.setPriorityColor
-import com.google.android.material.appbar.MaterialToolbar
 
 class UpdateFragment : Fragment() {
 
