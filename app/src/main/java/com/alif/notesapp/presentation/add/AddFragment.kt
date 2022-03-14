@@ -10,6 +10,8 @@ import com.alif.notesapp.R
 import com.alif.notesapp.databinding.FragmentAddBinding
 import com.alif.notesapp.utills.ExtensionFunctions.setActionBar
 import com.alif.notesapp.utills.HelperFunctions.setPriorityColor
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddFragment : Fragment() {
 
@@ -41,8 +43,20 @@ class AddFragment : Fragment() {
         inflater.inflate(R.menu.menu_save, menu)
         val item = menu.findItem(R.id.menu_save)
         item.actionView.findViewById<AppCompatImageButton>(R.id.btn_save).setOnClickListener {
+            insertNote()
             findNavController().navigate(R.id.action_addFragment_to_homeFragment)
             Toast.makeText(context, "Successfully Add Note..", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun insertNote() {
+        binding.apply {
+            val title = edtTitle.text.toString()
+            val desc = edtDescription.text.toString()
+
+            val calendar = Calendar.getInstance().time
+            val date = SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(calendar)
+            val priority = spinnerPriorities.selectedItem.toString()
         }
     }
 

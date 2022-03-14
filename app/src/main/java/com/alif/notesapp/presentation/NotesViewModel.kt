@@ -13,7 +13,7 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
     private val notesDao : NotesDao = NotesDatabase.getDatabase(application).notesDao()
     private val notesRepository = NotesRepository(notesDao)
 
-    fun insert(note: Notes) {
+    fun insertNotes(note: Notes) {
         viewModelScope.launch {
             notesRepository.insertNotes(note)
         }
