@@ -1,6 +1,7 @@
 package com.alif.notesapp.presentation.add
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
@@ -72,11 +73,18 @@ class AddFragment : Fragment() {
                 parseToPriority(priority)
             )
             addViewModel.insertNotes(data)
+            Log.i("AddFragment", "Successfully adding note.db")
         }
     }
 
     private fun parseToPriority(priority: String): Priority {
-        return Priority.valueOf(priority)
+        val arrayPriority = resources.getStringArray(R.array.priorities)
+        return when (priority) {
+            arrayPriority[0] -> Priority.HIGH
+            arrayPriority[1] -> Priority.MEDIUM
+            arrayPriority[2] -> Priority.LOW
+            else -> Priority.LOW
+        }
     }
 
     override fun onDestroyView() {

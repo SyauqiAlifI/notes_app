@@ -7,6 +7,7 @@ import com.alif.notesapp.data.NotesRepository
 import com.alif.notesapp.data.local.Notes
 import com.alif.notesapp.data.local.room.NotesDao
 import com.alif.notesapp.data.local.room.NotesDatabase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class NotesViewModel(application: Application) : AndroidViewModel(application) {
@@ -14,7 +15,7 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
     private val notesRepository = NotesRepository(notesDao)
 
     fun insertNotes(note: Notes) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             notesRepository.insertNotes(note)
         }
     }
