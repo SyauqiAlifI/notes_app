@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "tb_notes")
 @Parcelize
 data class Notes(
-    val id: String,
+    val id: Int,
     val title: String,
     val desc: String,
     val date: String,
