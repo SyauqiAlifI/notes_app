@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alif.notesapp.R
+import com.alif.notesapp.data.local.Notes
 import com.alif.notesapp.databinding.FragmentHomeBinding
 import com.alif.notesapp.presentation.NotesViewModel
 import com.alif.notesapp.utills.ExtensionFunctions.setActionBar
@@ -51,10 +52,23 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerView() {
         binding.rvNotes.apply {
             homeViewModel.getAllNotes().observe(viewLifecycleOwner) {
+                checkDataIsEmpty(it)
                 homeAdapter.setData(it)
             }
             adapter = homeAdapter
-            layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        }
+    }
+
+    private fun checkDataIsEmpty(data: List<Notes>) {
+        binding.apply {
+            if (data.isEmpty()) {
+                imgNoData.visibility = View.VISIBLE
+                rvNotes.visibility = View.INVISIBLE
+            } else {
+                imgNoData.visibility = View.INVISIBLE
+                rvNotes.visibility = View.VISIBLE
+            }
         }
     }
 
