@@ -5,6 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alif.notesapp.R
 import com.alif.notesapp.databinding.FragmentHomeBinding
 import com.alif.notesapp.presentation.NotesViewModel
@@ -43,9 +44,18 @@ class HomeFragment : Fragment() {
             btnGoToDetail.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
             }
-
         }
+        setupRecyclerView()
+    }
 
+    private fun setupRecyclerView() {
+        binding.rvNotes.apply {
+            homeViewModel.getAllNotes().observe(viewLifecycleOwner) {
+                homeAdapter.setData(it)
+            }
+            adapter = homeAdapter
+            layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
