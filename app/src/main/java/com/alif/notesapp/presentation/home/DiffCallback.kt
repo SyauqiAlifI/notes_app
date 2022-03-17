@@ -18,6 +18,12 @@ class DiffCallback(private val oldList: List<Notes>, private val newList: List<N
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        TODO("Not yet implemented")
+        val oldData = oldList[oldItemPosition]
+        val newData = newList[newItemPosition]
+        return oldData.id == newData.id &&
+                oldData.date == newData.date &&
+                oldData.desc == newData.desc &&
+                oldData.priority == newData.priority &&
+                oldData.title == newData.title
     }
 }
