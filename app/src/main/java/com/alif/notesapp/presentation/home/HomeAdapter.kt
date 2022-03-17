@@ -11,7 +11,7 @@ import com.alif.notesapp.databinding.RowItemNotesBinding
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
 
-    var listNotes = ArrayList<Notes>
+    var listNotes = ArrayList<Notes>()
 
     inner class MyViewHolder(val binding: RowItemNotesBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -27,6 +27,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
         holder.binding.apply {
             tvTitle.text = data?.title
             tvDescription.text = data?.desc
+            tvDate.text = data.date
 
             when (data?.priority) {
                 Priority.HIGH -> priorityIndicator.setCardBackgroundColor(
@@ -45,5 +46,11 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
         }
     }
 
-    override fun getItemCount(): Int =
+    override fun getItemCount(): Int = listNotes.size
+
+    fun setData(data: List<Notes>?) {
+        if (data == null) return
+        listNotes.clear()
+        listNotes.addAll(data)
+    }
 }
