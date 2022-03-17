@@ -65,15 +65,30 @@ class AddFragment : Fragment() {
             val date = SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(calendar)
             val priority = spinnerPriorities.selectedItem.toString()
 
-            val data = Notes(
-                0,
-                title,
-                desc,
-                date,
-                parseToPriority(priority)
-            )
-            addViewModel.insertNotes(data)
-            Log.i("AddFragment", "Successfully adding note.db")
+            if (edtTitle.text.isEmpty() || edtDescription.text.isEmpty()) {
+                if (edtTitle.text.isEmpty()) {
+                    edtTitle.error = "Please fill the field"
+
+                } else if (edtDescription.text.isEmpty()) {
+                    edtDescription.error = "Please fill the field"
+                } else {
+                    edtTitle.error = "Please fill the field"
+                    edtDescription.error = "Please fill the field"
+                }
+                //  Toast.makeText(context, "Please fill the fields", Toast.LENGTH_SHORT).show()
+            } else {
+                val data = Notes(
+                    0,
+                    title,
+                    desc,
+                    date,
+                    parseToPriority(priority)
+                )
+                addViewModel.insertNotes(data)
+                findNavController().navigate(R.id.action_addFragment_to_homeFragment)
+                Toast.makeText(context, "Successfully add note", Toast.LENGTH_SHORT).show()
+                Log.i("AddFragment", "insertnote: $data")
+            }
         }
     }
 

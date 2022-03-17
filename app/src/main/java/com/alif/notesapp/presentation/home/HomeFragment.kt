@@ -3,17 +3,21 @@ package com.alif.notesapp.presentation.home
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.alif.notesapp.MainActivity
 import com.alif.notesapp.R
 import com.alif.notesapp.databinding.FragmentHomeBinding
+import com.alif.notesapp.presentation.NotesViewModel
 import com.alif.notesapp.utills.ExtensionFunctions.setActionBar
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding as FragmentHomeBinding
+
+    private val homeViewModel : NotesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

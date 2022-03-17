@@ -1,4 +1,49 @@
 package com.alif.notesapp.presentation.home
 
-class HomeAdapter {
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+import com.alif.notesapp.R
+import com.alif.notesapp.data.local.Notes
+import com.alif.notesapp.data.local.Priority
+import com.alif.notesapp.databinding.RowItemNotesBinding
+
+class HomeAdapter : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
+
+    var listNotes: ArrayList<Notes>? = null
+
+    inner class MyViewHolder(val binding: RowItemNotesBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MyViewHolder(
+        RowItemNotesBinding.inflate(LayoutInflater.from(parent.context))
+    )
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val data = listNotes?.get(position)
+        holder.binding.apply {
+            tvTitle.text = data?.title
+            tvDescription.text = data?.desc
+
+            when (data?.priority) {
+                Priority.HIGH -> priorityIndicator.setCardBackgroundColor(
+                    ContextCompat.getColor(priorityIndicator.context, R.color.pink)
+                )
+                Priority.MEDIUM -> priorityIndicator.setCardBackgroundColor(
+                    ContextCompat.getColor(priorityIndicator.context, R.color.yellow)
+                )
+                Priority.LOW -> priorityIndicator.setCardBackgroundColor(
+                    ContextCompat.getColor(priorityIndicator.context, R.color.green)
+                )
+                else -> priorityIndicator.setCardBackgroundColor(
+                    ContextCompat.getColor(priorityIndicator.context, R.color.pink)
+                )
+            }
+        }
+    }
+
+    override fun getItemCount(): Int =
 }
