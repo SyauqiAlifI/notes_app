@@ -11,7 +11,7 @@ import com.alif.notesapp.databinding.RowItemNotesBinding
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
 
-    var listNotes: ArrayList<Notes>? = null
+    var listNotes = ArrayList<Notes>
 
     inner class MyViewHolder(val binding: RowItemNotesBinding) :
         RecyclerView.ViewHolder(binding.root) {
