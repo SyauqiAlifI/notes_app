@@ -5,9 +5,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
-import com.alif.notesapp.MainActivity
 import com.alif.notesapp.R
 import com.alif.notesapp.databinding.FragmentHomeBinding
 import com.alif.notesapp.presentation.NotesViewModel
@@ -17,7 +14,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding as FragmentHomeBinding
 
-    private val homeViewModel : NotesViewModel by viewModels()
+    private val homeViewModel: NotesViewModel by viewModels()
+    private val homeAdapter by lazy { HomeAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,16 +27,25 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        homeViewModel.getAllNotes().observe(viewLifecycleOwner) {
+            homeAdapter.setData(it)
+        }
+
         setHasOptionsMenu(true)
 
-        binding.toolbarHome.setActionBar(requireActivity())
+        binding.apply {
 
-        binding.fab.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_addFragment)
+            toolbarHome.setActionBar(requireActivity())
+
+            fab.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_addFragment)
+            }
+            btnGoToDetail.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
+            }
+
         }
-        binding.btnGoToDetail.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
-        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -3,6 +3,7 @@ package com.alif.notesapp.presentation.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.alif.notesapp.R
 import com.alif.notesapp.data.local.Notes
@@ -50,7 +51,10 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
 
     fun setData(data: List<Notes>?) {
         if (data == null) return
+        val diffCallback = DiffCallback(listNotes, data)
+        val diffUtil = DiffUtil.calculateDiff(diffCallback)
         listNotes.clear()
         listNotes.addAll(data)
+        diffUtil.dispatchUpdatesTo(this)
     }
 }
