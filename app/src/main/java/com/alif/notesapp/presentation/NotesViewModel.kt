@@ -15,11 +15,24 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
     private val notesDao : NotesDao = NotesDatabase.getDatabase(application).notesDao()
     private val notesRepository = NotesRepository(notesDao)
 
+    val sortByHighPriority: LiveData<List<Notes>> = notesRepository.sortByHighPriority
+    val sortByLowPriority: LiveData<List<Notes>> = notesRepository.sortByLowPriority
+
     fun getAllNotes() : LiveData<List<Notes>> = notesRepository.getAllNotes
 
     fun insertNotes(note: Notes) {
         viewModelScope.launch(Dispatchers.IO) {
             notesRepository.insertNotes(note)
+        }
+    }
+
+    fun searchNotesByQuery(query: String) : LiveData<List<Notes>> {
+        return notesRepository.searchNotesByQuery(query)
+    }
+
+    fun deleteAllData() {
+        viewModelScope.launch(Dispatchers.IO) {
+            notesRepository.deleteAllData()
         }
     }
 }
