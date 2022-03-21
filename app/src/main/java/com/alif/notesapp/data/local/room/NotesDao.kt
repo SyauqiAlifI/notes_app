@@ -26,4 +26,7 @@ interface NotesDao {
 
     @Query("DELETE FROM tb_notes")
     suspend fun deleteAllData()
+
+    @Delete
+    suspend fun deleteNote(notes: Notes)
 }
