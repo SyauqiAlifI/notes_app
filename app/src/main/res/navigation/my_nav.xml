@@ -51,7 +51,11 @@
             app:popExitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_detailFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="notes"
             app:argType="com.alif.notesapp.data.local.Notes" />
@@ -63,7 +67,11 @@
         tools:layout="@layout/fragment_update">
         <action
             android:id="@+id/action_updateFragment_to_detailFragment2"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popUpTo="@id/detailFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="update"
             app:argType="com.alif.notesapp.data.local.Notes" />

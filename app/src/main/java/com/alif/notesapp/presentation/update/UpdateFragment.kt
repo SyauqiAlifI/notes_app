@@ -62,22 +62,19 @@ class UpdateFragment : Fragment() {
     private fun updateNote() {
         binding.apply {
             val title = binding.edtTitleUpdate.text.toString()
-            val desc = binding.edtDescriptionUpdate.toString()
+            val desc = binding.edtDescriptionUpdate.text.toString()
             val priority = spinnerPrioritiesUpdate.selectedItem.toString()
 
             val date = Calendar.getInstance().time
-            val formattedDate = SimpleDateFormat("dd,MM,yyyy", Locale.getDefault()).format(date)
+            val formattedDate = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(date)
             val note = Notes(
-                args.update.id,
-                title,
-                desc,
-                formattedDate,
+                args.update.id, title, desc, formattedDate,
                 parseToPriority(context, priority)
             )
             updateViewModel.updateNote(note)
+            val action = UpdateFragmentDirections.actionUpdateFragmentToDetailFragment2(note)
+            findNavController().navigate(action)
         }
-        val action = UpdateFragmentDirections.actionUpdateFragmentToDetailFragment2(args.update)
-        findNavController().navigate(action)
         Toast.makeText(context, "Note Has Been Updated.", Toast.LENGTH_SHORT).show()
     }
 
