@@ -131,7 +131,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
             AlertDialog.Builder(context)
                 .setTitle("No Notes!")
                 .setMessage("There is no Notes in your phone!")
-                .setPositiveButton("OK") { _, _ -> }
+                .setPositiveButton("OK") { _, _ -> }.show()
         } else {
             AlertDialog.Builder(context)
                 .setTitle("Delete All Notes?")
@@ -142,7 +142,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
                         .show()
                 }
                 .setNegativeButton("No") { _, _ -> }
-                .setNeutralButton("Cancel") { _, _ -> }
+                .setNeutralButton("Cancel") { _, _ -> }.show()
         }
     }
 

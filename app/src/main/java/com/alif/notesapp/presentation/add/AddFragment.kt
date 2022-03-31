@@ -10,10 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.alif.notesapp.R
 import com.alif.notesapp.data.local.Notes
-import com.alif.notesapp.data.local.Priority
 import com.alif.notesapp.databinding.FragmentAddBinding
 import com.alif.notesapp.presentation.NotesViewModel
 import com.alif.notesapp.utills.ExtensionFunctions.setActionBar
+import com.alif.notesapp.utills.HelperFunctions.parseToPriority
 import com.alif.notesapp.utills.HelperFunctions.setPriorityColor
 import java.text.SimpleDateFormat
 import java.util.*
@@ -23,7 +23,7 @@ class AddFragment : Fragment() {
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding as FragmentAddBinding
 
-    private val addViewModel : NotesViewModel by viewModels()
+    private val addViewModel: NotesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +41,8 @@ class AddFragment : Fragment() {
 
         binding.apply {
             toolbarAdd.setActionBar(requireActivity())
-            spinnerPriorities.onItemSelectedListener = context?.let { setPriorityColor(it, priorityIndicator) }
+            spinnerPriorities.onItemSelectedListener =
+                context?.let { setPriorityColor(it, priorityIndicator) }
         }
     }
 
@@ -82,23 +83,13 @@ class AddFragment : Fragment() {
                     title,
                     desc,
                     date,
-                    parseToPriority(priority)
+                    parseToPriority(context, priority)
                 )
                 addViewModel.insertNotes(data)
                 findNavController().navigate(R.id.action_addFragment_to_homeFragment)
                 Toast.makeText(context, "Successfully add note", Toast.LENGTH_SHORT).show()
                 Log.i("AddFragment", "insertnote: $data")
             }
-        }
-    }
-
-    private fun parseToPriority(priority: String): Priority {
-        val arrayPriority = resources.getStringArray(R.array.priorities)
-        return when (priority) {
-            arrayPriority[0] -> Priority.HIGH
-            arrayPriority[1] -> Priority.MEDIUM
-            arrayPriority[2] -> Priority.LOW
-            else -> Priority.LOW
         }
     }
 

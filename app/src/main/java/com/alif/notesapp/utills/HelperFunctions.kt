@@ -6,6 +6,7 @@ import android.widget.AdapterView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.alif.notesapp.R
+import com.alif.notesapp.data.local.Priority
 
 object HelperFunctions {
 
@@ -36,5 +37,17 @@ object HelperFunctions {
         }
 
         return listener
+    }
+
+
+
+    fun parseToPriority(context: Context?, priority: String): Priority {
+        val arrayPriority = context?.resources?.getStringArray(R.array.priorities)
+        return when (priority) {
+            arrayPriority?.get(0) -> Priority.HIGH
+            arrayPriority?.get(1) -> Priority.MEDIUM
+            arrayPriority?.get(2) -> Priority.LOW
+            else -> Priority.LOW
+        }
     }
 }

@@ -1,10 +1,7 @@
 package com.alif.notesapp.data.local.room
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.alif.notesapp.data.local.Notes
 
 @Dao
@@ -26,6 +23,9 @@ interface NotesDao {
 
     @Query("DELETE FROM tb_notes")
     suspend fun deleteAllData()
+
+    @Update
+    suspend fun updateNote(note: Notes)
 
     @Delete
     suspend fun deleteNote(notes: Notes)
