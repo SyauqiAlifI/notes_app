@@ -22,4 +22,6 @@
     <string name="txt_edit">Edit</string>
     <string name="txt_delete">Delete</string>
     <string name="go_to_detail_fragment">Go To Detail Fragment</string>
+    <string name="txt_undo">Undo</string>
+    <string name="txt_notes_app">Notes App</string>
 </resources>

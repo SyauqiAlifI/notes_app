@@ -1,8 +1,11 @@
 package com.alif.notesapp.utills
 
+import android.view.View
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.alif.notesapp.R
 import com.alif.notesapp.data.local.Notes
@@ -46,4 +49,14 @@ object BindingAdapters {
             }
         }
     }
+
+    //  Yoenas
+//    @BindingAdapter("android:emptyDatabase")
+//    @JvmStatic
+//    fun emptyDatabase(view: View, emptyDatabase: MutableLiveData<Boolean>) {
+//        when (emptyDatabase.value) {
+//            true -> view.visibility = View.VISIBLE
+//            else -> view.visibility = View.INVISIBLE
+//        }
+//    }
 }

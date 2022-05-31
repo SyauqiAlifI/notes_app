@@ -5,7 +5,10 @@ import android.view.View
 import android.widget.AdapterView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import com.alif.notesapp.R
+import com.alif.notesapp.data.local.Notes
 import com.alif.notesapp.data.local.Priority
 
 object HelperFunctions {
@@ -38,8 +41,11 @@ object HelperFunctions {
 
         return listener
     }
-
-
+//    val emptyDatabase : MutableLiveData<Boolean> = MutableLiveData(true)
+//
+//    fun checkDataIsEmpty(data: List<Notes>) {
+//        emptyDatabase.value = data.isEmpty()
+//    }
 
     fun parseToPriority(context: Context?, priority: String): Priority {
         val arrayPriority = context?.resources?.getStringArray(R.array.priorities)

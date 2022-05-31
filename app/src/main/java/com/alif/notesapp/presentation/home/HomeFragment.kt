@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -16,6 +17,9 @@ import com.alif.notesapp.data.local.Notes
 import com.alif.notesapp.databinding.FragmentHomeBinding
 import com.alif.notesapp.presentation.NotesViewModel
 import com.alif.notesapp.utills.ExtensionFunctions.setActionBar
+import com.alif.notesapp.utills.HelperFunctions
+//import com.alif.notesapp.utills.HelperFunctions.checkDataIsEmpty
+import com.google.android.material.snackbar.Snackbar
 
 class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
     private var _binding: FragmentHomeBinding? = null
@@ -41,6 +45,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
             homeAdapter.setData(it)
         }
 
+//        binding.mHelperFunctions = HelperFunctions
         setHasOptionsMenu(true)
 
         binding.apply {
@@ -162,10 +167,21 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val deletedItem = homeAdapter.listNotes[viewHolder.adapterPosition]
                 homeViewModel.deleteNote(deletedItem)
+                restoredData(viewHolder.itemView, deletedItem)
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeToDelete)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    private fun restoredData(view: View, deletedItem: Notes) {
+        Snackbar.make(view, "Deleted ${deletedItem.title}", Snackbar.LENGTH_LONG)
+            .setTextColor(ContextCompat.getColor(view.context, R.color.black))
+            .setAction(getString(R.string.txt_undo)) {
+                homeViewModel.insertNotes(deletedItem)
+            }
+            .setActionTextColor(ContextCompat.getColor(view.context, R.color.black))
+            .show()
     }
 
     override fun onDestroyView() {
